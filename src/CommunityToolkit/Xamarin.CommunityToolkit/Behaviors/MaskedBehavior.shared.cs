@@ -113,6 +113,9 @@ namespace Xamarin.CommunityToolkit.Behaviors
 
 		string RemoveMask(string text)
 		{
+			if (positions == null)
+				return text;
+
 			var maskChars = positions
 				.Select(c => c.Value)
 				.Distinct()

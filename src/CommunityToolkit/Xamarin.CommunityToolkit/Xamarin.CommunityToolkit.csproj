@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;netstandard2.0;netstandard2.1;Xamarin.iOS10;MonoAndroid10.0;Xamarin.TVOS10;Xamarin.WatchOS10;Xamarin.Mac20;tizen40</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);uap10.0.18362;netcoreapp3.1;net472;net471</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard2.0;netstandard2.1;Xamarin.iOS10;MonoAndroid13.0;Xamarin.TVOS10;Xamarin.WatchOS10;Xamarin.Mac20;net7.0-ios14.2</TargetFrameworks>
+    <!--<TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);uap10.0.18362;netcoreapp3.1;net472;net471</TargetFrameworks>-->
     <AssemblyName>Xamarin.CommunityToolkit</AssemblyName>
     <RootNamespace>Xamarin.CommunityToolkit</RootNamespace>
     <PackageId>Xamarin.CommunityToolkit</PackageId>
@@ -52,7 +52,7 @@
     <Compile Include="**/*.shared.*.cs" />
     <None Include="..\..\..\LICENSE" PackagePath="" Pack="true" />
     <None Include="..\..\..\assets\XamarinCommunityToolkit_128x128.png" PackagePath="icon.png" Pack="true" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.1.20" />
     <PackageReference Include="mdoc" Version="5.8.5" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
@@ -104,7 +104,7 @@
     <AndroidResource Include="Resources\**\*.png" />
   </ItemGroup>
 
-  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) or $(TargetFramework.StartsWith('net7.0-ios')) ">
     <Compile Include="**\*.ios.cs" />
     <Compile Include="**\*.ios.*.cs" />
   </ItemGroup>

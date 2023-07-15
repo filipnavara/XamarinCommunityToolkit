@@ -121,14 +121,14 @@ namespace Xamarin.CommunityToolkit.UI.Views
 
 		public CameraView? Element { get; set; }
 
-		CameraManager Manager => manager ??= (CameraManager)(Context.GetSystemService(Context.CameraService) ?? throw new NullReferenceException());
+		CameraManager Manager => manager ??= (CameraManager)(Context?.GetSystemService(Context.CameraService) ?? throw new NullReferenceException());
 
 		bool ZoomSupported => maxDigitalZoom != 0;
 
-		public override AView? OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) =>
+		public override AView? OnCreateView(LayoutInflater inflater, ViewGroup? container, Bundle? savedInstanceState) =>
 			inflater.Inflate(Resource.Layout.CameraFragment, null);
 
-		public override void OnViewCreated(AView view, Bundle savedInstanceState) =>
+		public override void OnViewCreated(AView view, Bundle? savedInstanceState) =>
 			texture = view.FindViewById<AutoFitTextureView>(Resource.Id.cameratexture);
 
 		public override async void OnResume()
@@ -234,7 +234,7 @@ namespace Xamarin.CommunityToolkit.UI.Views
 				sensorOrientation = (int)(characteristics.Get(CameraCharacteristics.SensorOrientation) ?? throw new NullReferenceException());
 
 				var displaySize = new APoint();
-				Activity.WindowManager?.DefaultDisplay?.GetSize(displaySize);
+				Activity?.WindowManager?.DefaultDisplay?.GetSize(displaySize);
 
 				_ = texture ?? throw new NullReferenceException();
 				var rotatedViewWidth = texture.Width;
@@ -814,12 +814,12 @@ namespace Xamarin.CommunityToolkit.UI.Views
 				await permissionsRequested.Task;
 
 			var permissionsToRequest = new List<string>();
-			cameraPermissionsGranted = ContextCompat.CheckSelfPermission(Context, Manifest.Permission.Camera) == Permission.Granted;
+			cameraPermissionsGranted = ContextCompat.CheckSelfPermission(Context!, Manifest.Permission.Camera) == Permission.Granted;
 			if (!cameraPermissionsGranted)
 				permissionsToRequest.Add(Manifest.Permission.Camera);
 			if (Element?.CaptureMode == CameraCaptureMode.Video)
 			{
-				audioPermissionsGranted = ContextCompat.CheckSelfPermission(Context, Manifest.Permission.RecordAudio) == Permission.Granted;
+				audioPermissionsGranted = ContextCompat.CheckSelfPermission(Context!, Manifest.Permission.RecordAudio) == Permission.Granted;
 				if (!audioPermissionsGranted)
 					permissionsToRequest.Add(Manifest.Permission.RecordAudio);
 			}
@@ -907,7 +907,7 @@ namespace Xamarin.CommunityToolkit.UI.Views
 		{
 			// "To improve user privacy, direct access to shared/external storage devices is deprecated"
 			// Env.GetExternalStoragePublicDirectory(Env.DirectoryDcim).AbsolutePath
-			var path = Context.GetExternalFilesDir(Env.DirectoryDcim)?.AbsolutePath ?? throw new NullReferenceException();
+			var path = Context?.GetExternalFilesDir(Env.DirectoryDcim)?.AbsolutePath ?? throw new NullReferenceException();
 
 			if (!Directory.Exists(path))
 				Directory.CreateDirectory(path);

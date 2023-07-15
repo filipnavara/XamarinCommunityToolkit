@@ -141,7 +141,12 @@ namespace Xamarin.CommunityToolkit.UI.Views
 					}
 					else if (asset.MediaType == PHAssetMediaType.Video)
 					{
-						PHImageManager.DefaultManager.RequestAvAsset(asset, new PHVideoRequestOptions
+#if NET						
+						PHImageManager.DefaultManager.RequestAVAsset(
+#else
+						PHImageManager.DefaultManager.RequestAvAsset(
+#endif
+						asset, new PHVideoRequestOptions
 						{
 							Version = PHVideoRequestOptionsVersion.Original
 						}, (avAsset, mix, info) =>

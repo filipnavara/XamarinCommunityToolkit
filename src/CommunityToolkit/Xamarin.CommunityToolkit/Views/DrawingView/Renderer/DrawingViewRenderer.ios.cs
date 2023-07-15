@@ -39,14 +39,14 @@ namespace Xamarin.CommunityToolkit.UI.Views
 			}
 		}
 
-		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+		protected override void OnElementPropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
 			if (e.PropertyName == DrawingView.LinesProperty.PropertyName)
 				LoadPoints();
 		}
 
-		void OnLinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => LoadPoints();
+		void OnLinesCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => LoadPoints();
 
 		public override void TouchesBegan(NSSet touches, UIEvent? evt)
 		{

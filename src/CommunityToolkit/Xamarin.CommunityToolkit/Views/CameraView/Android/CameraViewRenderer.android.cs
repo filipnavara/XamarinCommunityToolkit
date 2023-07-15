@@ -93,12 +93,14 @@ namespace Xamarin.CommunityToolkit.UI.Views
 
 		void OnElementChanged(ElementChangedEventArgs<CameraView?> e)
 		{
-			CameraFragment? newfragment = null;
+			FragmentTransaction transaction = FragmentManager.BeginTransaction();
 
 			if (e.OldElement != null)
 			{
 				e.OldElement.PropertyChanged -= OnElementPropertyChanged;
 				e.OldElement.ShutterClicked -= OnShutterClicked;
+				if (camerafragment != null)
+					transaction.Remove(camerafragment);
 				camerafragment?.Dispose();
 				camerafragment = null;
 			}
@@ -111,12 +113,11 @@ namespace Xamarin.CommunityToolkit.UI.Views
 				e.NewElement.ShutterClicked += OnShutterClicked;
 
 				ElevationHelper.SetElevation(this, e.NewElement);
-				newfragment = new CameraFragment() { Element = element };
+				camerafragment = new CameraFragment() { Element = element };
+				transaction.Add(Id, camerafragment, "camera");
 			}
 
-			FragmentManager.BeginTransaction()
-				.Replace(Id, camerafragment = newfragment, "camera")
-				.Commit();
+			transaction.Commit();
 
 			ElementChanged?.Invoke(this, new VisualElementChangedEventArgs(e.OldElement, e.NewElement));
 		}

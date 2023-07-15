@@ -30,11 +30,11 @@ namespace Xamarin.CommunityToolkit.iOS.Effects
 
 		protected void Update()
 		{
-			var effect = (T)Element.Effects.FirstOrDefault(e => e is T);
+			var effect = (T)Element.Effects.First(e => e is T);
 			Update(Control ?? Container, effect);
 		}
 
-		void SetupControl(object sender, PropertyChangedEventArgs e)
+		void SetupControl(object? sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == "Renderer")
 			{

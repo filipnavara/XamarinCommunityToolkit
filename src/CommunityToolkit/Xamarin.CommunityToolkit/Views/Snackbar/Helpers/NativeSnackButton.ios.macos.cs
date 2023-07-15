@@ -23,8 +23,8 @@ namespace Xamarin.CommunityToolkit.Views.Snackbar.Helpers
 			Top = top;
 			Right = right;
 			Bottom = bottom;
-			LineBreakMode = NativeSnackButtonAppearance.LineBreakMode;
 #if __IOS__
+			TitleLabel.LineBreakMode = NativeSnackButtonAppearance.LineBreakMode;
 			ContentEdgeInsets = new UIEdgeInsets((nfloat)top, (nfloat)left, (nfloat)bottom, (nfloat)right);
 			TouchUpInside += async (s, e) =>
 			{
@@ -33,6 +33,7 @@ namespace Xamarin.CommunityToolkit.Views.Snackbar.Helpers
 			};
 		}
 #else
+			LineBreakMode = NativeSnackButtonAppearance.LineBreakMode;
 			WantsLayer = true;
 			Activated += async (s, e) =>
 			{

@@ -126,7 +126,7 @@ namespace Xamarin.CommunityToolkit.UI.Views
 				if (uri.LocalPath.StartsWith("/local"))
 				{
 					var libraryPath = NSFileManager.DefaultManager.GetUrls(NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomain.User)[0].Path;
-					filePath = Path.Combine(libraryPath, uri.LocalPath.Substring(7));
+					filePath = Path.Combine(libraryPath!, uri.LocalPath.Substring(7));
 				}
 				else if (uri.LocalPath.StartsWith("/temp"))
 					filePath = Path.Combine(Path.GetTempPath(), uri.LocalPath.Substring(6));

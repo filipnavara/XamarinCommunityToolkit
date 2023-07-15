@@ -167,7 +167,7 @@ namespace Xamarin.CommunityToolkit.UI.Views
 			{
 				try
 				{
-					var photoOutputConnection = photoOutput.ConnectionFromMediaType(AVMediaType.Video);
+					var photoOutputConnection = photoOutput.ConnectionFromMediaType(AVMediaTypes.Video.GetConstant()!);
 					if (photoOutputConnection != null)
 						photoOutputConnection.VideoOrientation = previewLayer.Connection?.VideoOrientation ?? throw new NullReferenceException();
 
@@ -422,13 +422,13 @@ namespace Xamarin.CommunityToolkit.UI.Views
 		public void RetrieveCameraDevice(CameraOptions cameraOptions)
 		{
 			var cameraAccess = false;
-			switch (AVCaptureDevice.GetAuthorizationStatus(AVMediaType.Video))
+			switch (AVCaptureDevice.GetAuthorizationStatus(AVAuthorizationMediaType.Video))
 			{
 				case AVAuthorizationStatus.Authorized:
 					cameraAccess = true;
 					break;
 				case AVAuthorizationStatus.NotDetermined:
-					AVCaptureDevice.RequestAccessForMediaType(AVMediaType.Video, granted =>
+					AVCaptureDevice.RequestAccessForMediaType(AVAuthorizationMediaType.Video, granted =>
 						InvokeOnMainThread(() => RetrieveCameraDevice(cameraOptions)));
 					return;
 			}
@@ -455,7 +455,7 @@ namespace Xamarin.CommunityToolkit.UI.Views
 			lastPosition = position;
 
 			device = null;
-			var devs = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Video);
+			var devs = AVCaptureDevice.DevicesWithMediaType(AVMediaTypes.Video.GetConstant());
 			foreach (var d in devs)
 			{
 				if (d.Position == position)

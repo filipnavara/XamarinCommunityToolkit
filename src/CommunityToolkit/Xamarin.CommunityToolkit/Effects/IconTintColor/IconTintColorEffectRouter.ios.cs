@@ -22,6 +22,9 @@ namespace Xamarin.CommunityToolkit.iOS.Effects
 		{
 			base.OnElementPropertyChanged(args);
 
+			if (args.PropertyName == null)
+				return;
+
 			if (!args.PropertyName.Equals(IconTintColorEffect.TintColorProperty.PropertyName) &&
 				!args.PropertyName.Equals(Image.SourceProperty.PropertyName) &&
 				!args.PropertyName.Equals(ImageButton.SourceProperty.PropertyName))
@@ -85,7 +88,7 @@ namespace Xamarin.CommunityToolkit.iOS.Effects
 			}
 		}
 
-		void ImageViewTintColorPropertyChanged(object sender, PropertyChangedEventArgs e)
+		void ImageViewTintColorPropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == Image.IsLoadingProperty.PropertyName)
 			{
@@ -116,7 +119,7 @@ namespace Xamarin.CommunityToolkit.iOS.Effects
 			}
 		}
 
-		void ButtonTintColorPropertyChanged(object sender, PropertyChangedEventArgs e)
+		void ButtonTintColorPropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == ImageButton.IsLoadingProperty.PropertyName)
 			{

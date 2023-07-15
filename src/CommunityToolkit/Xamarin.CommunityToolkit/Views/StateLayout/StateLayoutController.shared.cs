@@ -161,7 +161,7 @@ namespace Xamarin.CommunityToolkit.UI.Views
 			}
 		}
 
-		StateView GetViewForState(LayoutState state, string? customState)
+		StateView? GetViewForState(LayoutState state, string? customState)
 		{
 			var view = StateViews.FirstOrDefault(x => (x.StateKey == state && state != LayoutState.Custom) ||
 							(state == LayoutState.Custom && x.CustomStateKey == customState));
