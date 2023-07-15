@@ -31,13 +31,13 @@ namespace Xamarin.CommunityToolkit.Android.Effects
 			}
 		}
 
-		protected virtual void Update(global::Android.Views.View view, T effect)
+		protected virtual void Update(global::Android.Views.View view, T? effect)
 		{
 		}
 
 		protected void Update()
 		{
-			var effect = (T)Element.Effects.FirstOrDefault(e => e is T);
+			var effect = (T?)Element.Effects.FirstOrDefault(e => e is T);
 			var ve = Element as VisualElement;
 			var veFinal = ve?.GetViewForAccessibility() ?? ve?.GetViewForAccessibility(Control);
 			if (veFinal != null)

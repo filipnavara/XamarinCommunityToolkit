@@ -20,7 +20,7 @@ namespace Xamarin.CommunityToolkit.Android.Effects
 	{
 		SemanticAccessibilityDelegate? semanticAccessibilityDelegate;
 
-		protected override void Update(global::Android.Views.View view, SemanticEffectRouter effect)
+		protected override void Update(global::Android.Views.View view, SemanticEffectRouter? effect)
 		{
 			var isHeading = SemanticEffect.GetHeadingLevel(Element) != CommunityToolkit.Effects.Semantic.HeadingLevel.None;
 			ViewCompat.SetAccessibilityHeading(view, isHeading);
